@@ -1,9 +1,17 @@
 package kr.codesqaud.cafe.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.connector.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +31,15 @@ public class UserController {
         this.joinService = joinService;
     }
 
-    @GetMapping(value = "/users/{id}")
+
+
+    /*@GetMapping("/test/test")
+    public String test(Model model) {
+        model.addAttribute("error","error");
+        return "exception/error";
+    }*/
+
+    @GetMapping("/users/{id}")
     public String userProfile(Model model, @PathVariable String id) {
         model.addAttribute("user", joinService.lookupUser(id));
         return "user/profile";
