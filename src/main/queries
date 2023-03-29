@@ -44,4 +44,4 @@ TCP 실행
 java -cp h2-1.4.200.jar org.h2.tools.Console -tcp
 
 파일 집어넣기
-scp -i ~/Downloads/new_poro_key.pem test.mv.db ubuntu@ec2-3-135-208-179.us-east-2.compute.amazonaws.com:/home/ubuntu
+scp -i ~/.ssh/new_poro_key.pem test.mv.db ubuntu@3.135.177.246:/home/ubuntu
