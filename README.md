@@ -15,33 +15,41 @@ CRUD 기능을 가진 게시판을 구현하는 개인 프로젝트입니다. �
 ### 1.3. 사용 기술
 
 #### 주요 프레임 워크 / 라이브러리
+
 - Java
 - SpringBoot
 - Spring JDBC
 - JUnit5, AssertJ
 
 #### Build Tool
+
 - Gradle
 
 #### DB
+
 - MySQL / H2DB(Test 용)
 
 #### Template Engine
+
 - Mustache
 
 #### 비동기 처리
+
 - Jquery
 
 #### 배포
+
 - AWS EC2
 
 #### CI/CD
+
 - Linux Bash Build Script 작성
 - Crontab
 
 ## 2. 서비스 미리보기
 
 ### 2.1 게시글
+
 1. 게시글 전체 목록
 
 ![img.png](images/img.png)
@@ -98,7 +106,7 @@ CRUD 기능을 가진 게시판을 구현하는 개인 프로젝트입니다. �
 
 ![img_10.png](images/img_10.png)
 
-로그인 상태에서는 회원 목록을 조회할 수 있습니다. 자신의 회원 정보 수정에만 접근 가능합니다. 
+로그인 상태에서는 회원 목록을 조회할 수 있습니다. 자신의 회원 정보 수정에만 접근 가능합니다.
 
 ### 2.3 댓글
 
@@ -116,13 +124,11 @@ CRUD 기능을 가진 게시판을 구현하는 개인 프로젝트입니다. �
 
 ### 2.4 기타 예외 처리
 
-
 ![img_3.png](images/img_3.png)
 자신의 글만 삭제/수정 가능합니다.
 
 ![img_13.png](images/img_13.png)
 존재하지 않는 URL로 접근 시 Global Error Page에 404를 반환합니다.
-
 
 ## 3.설계
 
@@ -161,3 +167,49 @@ CRUD 기능을 가진 게시판을 구현하는 개인 프로젝트입니다. �
 | DELETED | BOOLEAN | NO | | FALSE  |
 
 ### 3.2 API 설계
+
+#### 게시글 관련 API
+
+| 기능           | 메소드    | URL                   | Return Page       |
+|--------------|--------|-----------------------|-------------------|
+| 게시글 전체 목록 조회 | GET    | /                     | 게시글 전체 목록         |
+| 게시글 상세 보기    | GET    | /qna/{articleId}      | 게시글 상세보기 페이지 이동   |
+| 게시글 등록 페이지   | GET    | /qna/form             | 게시글 등록 페이지 이동     |
+| 게시글 수정 페이지   | GET    | /qna/{articleId}/form | 게시글 수정 페이지 이동     |
+| 게시글 등록       | POST   | /qna/create           | 게시글 등록 후 전체 목록 이동 | 
+| 게시글 수정       | PUT    | /qna/{articleId}/form | 게시글 수정 후 전체 목록 이동 |
+| 게시글 삭제       | DELETE | /qna/{articleId}      | 게시글 삭제 후 전체 목록 이동 |
+
+#### 회원 관련 API
+
+
+| 기능         | 메소드  | URL                  | Return Page           |
+|------------|------|----------------------|-----------------------|
+| 회원 가입 페이지  | GET  | /users/form          | 회원 가입 페이지로 이동         |
+| 회원 프로필 조회  | GET  | /users/{userId}      | 회원 프로필 페이지로 이동        |
+| 회원 가입      | POST | /users/create        | 회원 가입 후 회원 목록으로 이동    |
+| 회원 목록 페이지  | GET  | /users/list          | 회원 목록 페이지로 이동         |
+| 회원 수정 페이지  | GET  | /users/{userId}/form | 회원 정보 수정 페이지로 이동      |
+| 회원 수정 페이지  | PUT  | /users/{userId}/form | 회원 정보 수정 후 회원 목록으로 이동 |
+| 로그인 페이지    | GET  | /users/login         | 로그인 페이지로 이동           | 
+| 로그인        | POST | /users/login         | 로그인 후 회원 목록으로 이동      |
+| 로그인 실패 페이지 | GET  | /users/login_failed  | 로그인 실패 페이지로 이동        |
+| 로그아웃       | GET  | /users/logout        | 로그아웃 후 회원 목록으로 이동     |
+
+#### 댓글 관련 API
+
+
+| 기능         | 메소드    | URL                  | Return Page           |
+|------------|--------|----------------------|-----------------------|
+| 댓글 작성      | POST   | /qna/{articleId}/reply          | 비동기 댓글 등록             |
+| 댓글 삭제      | DELETE | /qna/{articleId}/reply/{replyId}      | 비동기 댓글 삭제             |
+
+
+### 4. 블로그 관련 포스팅
+
+- [Spring 프로젝트 AWS EC2 배포하기 - 인스턴스 생성, 서버 설정](https://porolog.tistory.com/32)
+- [Spring 프로젝트 AWS EC2 배포하기 - H2 DB 연결](https://porolog.tistory.com/33)
+- [Mock을 이용한 Sliced Test - @WebMvcTest, @JdbcTest](https://porolog.tistory.com/36)
+- [AJAX와 Jquery로 비동기 댓글달기](https://porolog.tistory.com/37)
+
+
