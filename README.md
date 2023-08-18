@@ -33,17 +33,13 @@ CRUD 기능을 가진 게시판을 구현하는 개인 프로젝트입니다. �
 
 - Mustache
 
-#### 비동기 처리
-
-- Jquery
-
 #### 배포
 
 - AWS EC2
 
 #### CI/CD
 
-- Linux Bash Build Script 작성
+- Linux 자동 Build Script 작성(Pull -> Deploy)
 - Crontab
 
 ## 2. 서비스 미리보기
